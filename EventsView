@@ -200,3 +200,17 @@ private let itemFormatter: DateFormatter = {
 
 }()
 
+
+
+
+
+
+#Preview {
+
+
+
+    EventsView()
+
+
+
+}
