@@ -1,0 +1,397 @@
+//
+
+//  Created by DPI Student 043 on 7/14/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct ViewA: View {
+
+    @ObservedObject var viewModel: ItemsViewModel
+
+    @State private var searchText = ""
+
+    
+
+    
+
+    var body: some View {
+
+        NavigationView {
+
+            ScrollView  {
+
+                VStack(alignment: .leading) {
+
+
+
+                    Text("Parks Near You")
+
+                        .font(.title)
+
+                        .padding(.horizontal)
+
+                    
+
+                    ScrollView(.horizontal, showsIndicators: false) {
+
+                        HStack(spacing: 20) {
+
+                            ForEach(viewModel.items) { item in
+
+                                NavigationLink(destination: ItemDetail(viewModel: viewModel, item: item)) {
+
+                                    ItemCard(viewModel: viewModel, item: item)
+
+                                }
+
+                                .buttonStyle(PlainButtonStyle()) // Remove default button style of NavigationLink
+
+                            }
+
+                            .padding(.horizontal,1) // Padding for the HStack content
+
+                        }
+
+                        .padding(.vertical) // Padding for ScrollView content
+
+                    }
+
+                    .padding(.top,3) // Additional padding on top of the ScrollView
+
+                    
+
+                    Text("Upcoming Events")
+
+                        .font(.title)
+
+                        .padding(.horizontal)
+
+                    
+
+                    ScrollView(.horizontal, showsIndicators: false) {
+
+                        HStack(spacing: 20){
+
+                            NavigationLink(destination: Event1()) {
+
+                                Text("Dodge Ball Game")
+
+                                    .bold()
+
+                                    .foregroundColor(.black)
+
+                                    .frame(width: 200, height: 200) // Fixed size for each item card
+
+                                    .background(Color.white)
+
+                                    .cornerRadius(10)
+
+                                    .shadow(radius: 5)
+
+                            }
+
+                            NavigationLink(destination: Event2()) {
+
+                                Text("Movie Night")
+
+                                    .bold()
+
+                                    .foregroundColor(.black)
+
+                                    .frame(width: 200, height: 200) // Fixed size for each item card
+
+                                    .background(Color.white)
+
+                                    .cornerRadius(10)
+
+                                    .shadow(radius: 5)
+
+                            }
+
+                            NavigationLink(destination: Event3()) {
+
+                                Text("Pianos in the Park")
+
+                                    .bold()
+
+                                    .foregroundColor(.black)
+
+                                    .frame(width: 200, height: 200) // Fixed size for each item card
+
+                                    .background(Color.white)
+
+                                    .cornerRadius(10)
+
+                                    .shadow(radius: 5)
+
+                            }
+
+                            NavigationLink(destination: Event4()) {
+
+                                Text("Soccer Game")
+
+                                    .bold()
+
+                                    .foregroundColor(.black)
+
+                                    .frame(width: 200, height: 200) // Fixed size for each item card
+
+                                    .background(Color.white)
+
+                                    .cornerRadius(10)
+
+                                    .shadow(radius: 5)
+
+                            }
+
+                            
+
+                            .padding(.horizontal, 12)
+
+                            
+
+                            Spacer()
+
+                        }
+
+                        .padding(.vertical)
+
+                    }
+
+                                }
+
+                .navigationBarTitle("Home")
+
+            .padding(.top, 15)
+
+            } // Additional padding on top of the VStack
+
+        }
+
+    }
+
+}
+
+
+
+struct ItemCard: View {
+
+    @ObservedObject var viewModel: ItemsViewModel
+
+    let item: Item
+
+
+
+    var body: some View {
+
+        VStack {
+
+            Text(item.name)
+
+                .font(.headline)
+
+                .foregroundColor(.primary)
+
+
+
+            Button(action: {
+
+                viewModel.toggleFavorite(item: item) // Toggle favorite in viewModel
+
+            }) {
+
+                Image(systemName: item.isFavorite ? "star.fill" : "star")
+
+                    .foregroundColor(item.isFavorite ? .yellow : .gray)
+
+                    .font(.system(size: 20))
+
+                    .padding(4)
+
+            }
+
+            .buttonStyle(PlainButtonStyle()) // Remove default button style of Button
+
+
+
+            // Optionally display a preview of description or additional information
+
+            // Text(item.description).font(.subheadline).foregroundColor(.gray)
+
+        }
+
+        .frame(width: 200, height: 200) // Fixed size for each item card
+
+        .background(Color.white)
+
+        .cornerRadius(10)
+
+        .shadow(radius: 5)
+
+    }
+
+}
+
+
+
+struct Event1: View {
+
+    var body: some View {
+
+        VStack {
+
+            Text("""
+
+Description: Players try to get each other out by throwing the ball at one another or catching it. This activity teaches the basic fundamentals of catching and throwing. It stresses participation and teamwork. Join us for an hour of Dodgeball fun!
+
+
+
+Location: Rosedale Park, 6312 W. Rosedale Ave. Chicago, IL
+
+
+
+Date & Time: Thu, Jul 18, 2024 from 3:45 PM - 4:45 PM
+
+
+
+Fee: $8
+
+
+
+Age Range: Youth
+
+
+
+Age Description At least 6 but less than 13
+
+
+
+Categories: Sports
+
+
+
+
+
+""")
+
+                .padding()
+
+            
+
+        }
+
+        .navigationBarTitle("Event Details")
+
+    }
+
+}
+
+
+
+struct Event2: View {
+
+    var body: some View {
+
+        VStack {
+
+            Text("""
+
+
+
+Movie Playing: Wonka - PG | 112 minutes | 2023
+
+
+
+Location: Wicker (Charles, Joel) Park, 1425 N. Damen Avenue Chicago, IL
+
+
+
+Date & Time: Thu, Jul 18, 2024 from 8:15 PM - 10:07 PM
+
+
+
+Fee: $0.00
+
+
+
+Age Range: All Ages
+
+
+
+Categories: MoviesNight Out in the Parks
+
+""")
+
+                .padding()
+
+            
+
+        }
+
+        .navigationBarTitle("Event Details")
+
+    }
+
+}
+
+
+
+struct Event3: View {
+
+    var body: some View {
+
+        VStack {
+
+            Text("Details")
+
+                .padding()
+
+            
+
+        }
+
+        .navigationBarTitle("Birthday Party Details")
+
+    }
+
+}
+
+struct Event4: View {
+
+    var body: some View {
+
+        VStack {
+
+            Text("Details")
+
+                .padding()
+
+            
+
+        }
+
+        .navigationBarTitle("Soccer Game Details")
+
+    }
+
+}
+
+
+
+
+
+struct ViewA_Previews: PreviewProvider {
+
+    static var previews: some View {
+
+        ViewA(viewModel: ItemsViewModel())
+
+    }
+
+}
