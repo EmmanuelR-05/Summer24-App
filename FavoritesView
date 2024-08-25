@@ -1,0 +1,40 @@
+//
+
+//  FavoritesView.swift
+
+//
+
+//  Created by DPI Student 043 on 7/14/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct FavoritesView: View {
+
+    @ObservedObject var viewModel: ItemsViewModel
+
+
+
+    var body: some View {
+
+        List(viewModel.favoriteItems) { item in
+
+            Text(item.name)
+
+            
+
+        }
+
+        .navigationTitle("Favorites")
+
+    }
+
+}
+
+
+
