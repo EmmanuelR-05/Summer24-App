@@ -1,0 +1,27 @@
+import SwiftUI
+
+
+
+struct FavoriteButton: View {
+
+    var isFavorite: Bool
+
+    var action: () -> Void
+
+    
+
+    var body: some View {
+
+        Button(action: action) {
+
+            Image(systemName: isFavorite ? "star.fill" : "star")
+
+                .foregroundColor(isFavorite ? .yellow : .gray)
+
+        }
+
+        .buttonStyle(BorderlessButtonStyle())
+
+    }
+
+}
