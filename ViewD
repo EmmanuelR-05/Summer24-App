@@ -1,0 +1,337 @@
+//
+
+//  Created by DPI Student 043 on 7/15/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+import MapKit
+
+
+
+
+
+
+
+struct Location: Identifiable {
+
+
+
+    let id = UUID()
+
+
+
+    let name: String
+
+
+
+    let coordinate: CLLocationCoordinate2D
+
+
+
+}
+
+
+
+
+
+
+
+struct ViewD: View {
+
+
+
+    @State private var selectedMarker: String? = nil
+
+
+
+    @State private var showSheet: Bool = false
+
+
+
+
+
+
+
+    let locations = [
+
+
+
+        Location(name: "Jackson Park", coordinate: CLLocationCoordinate2D(latitude: 41.79074855486563, longitude: -87.58313564084192)),
+
+
+
+        Location(name: "Navy Pier", coordinate: CLLocationCoordinate2D(latitude: 41.89203091598273, longitude: -87.60509442355234)),
+
+
+
+        Location(name: "Millennium Park", coordinate: CLLocationCoordinate2D(latitude: 41.88282491396245, longitude: -87.62332536128923)),
+
+
+
+        Location(name: "Ping Tom Park", coordinate: CLLocationCoordinate2D(latitude: 41.85756245746197, longitude: -87.63363149994301)),
+
+
+
+        Location(name: "Maggie Daley Park", coordinate: CLLocationCoordinate2D(latitude: 41.88255001468411, longitude: -87.61929350177017)),
+
+
+
+        Location(name: "Northerly Island Park", coordinate: CLLocationCoordinate2D(latitude: 41.85969835948481, longitude: -87.60807163522959)),
+
+
+
+        Location(name: "Mary Bart Park", coordinate: CLLocationCoordinate2D(latitude: 41.880020583177924, longitude: -87.65039499472121)),
+
+
+
+        Location(name: "Lincoln Park", coordinate: CLLocationCoordinate2D(latitude: 41.91640530912396, longitude: -87.63066014473424)),
+
+
+
+        Location(name: "Grant Park", coordinate: CLLocationCoordinate2D(latitude: 41.874422715863055, longitude: -87.61946560252954)),
+
+
+
+        Location(name: "Mandrake Park", coordinate: CLLocationCoordinate2D(latitude: 41.8235093673055, longitude: -87.60705109660069))
+
+
+
+    ]
+
+
+
+    
+
+
+
+    @State private var region = MKCoordinateRegion(
+
+
+
+        center: CLLocationCoordinate2D(latitude: 41.88282491396245, longitude: -87.62332536128923),
+
+
+
+        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+
+
+
+    )
+
+
+
+    
+
+
+
+    var body: some View {
+
+
+
+        NavigationStack {
+
+            ZStack {
+
+
+
+                Map(coordinateRegion: $region, annotationItems: locations) { location in
+
+
+
+                    MapAnnotation(coordinate: location.coordinate) {
+
+
+
+                        Button(action: {
+
+
+
+                            markerTapped(location.name)
+
+
+
+                        }) {
+
+
+
+                            VStack {
+
+
+
+                                Image(systemName: "mappin.circle.fill")
+
+
+
+                                    .foregroundColor(.red)
+
+
+
+                                    .imageScale(.large)
+
+
+
+                                Text(location.name)
+
+
+
+                                    .font(.caption)
+
+
+
+                                    .foregroundColor(.black)
+
+
+
+                                    .background(Color.white.opacity(0.7))
+
+
+
+                                    .cornerRadius(5)
+
+
+
+                                    .padding(3)
+
+
+
+                                    .bold()
+
+
+
+                            }
+
+
+
+                        }
+
+
+
+                    }
+
+
+
+                }
+
+                .border(Color.black, width: 3)
+
+                .frame(width:385, height:600)
+
+                
+
+                
+
+
+
+                .ignoresSafeArea()
+
+
+
+            }
+
+
+
+            .sheet(isPresented: $showSheet) {
+
+
+
+                
+
+
+
+                    
+
+
+
+                    VStack {
+
+
+
+                        Text(selectedMarker ?? "")
+
+
+
+                            .font(.title)
+
+
+
+                            .padding()
+
+
+
+                       
+
+
+
+                        
+
+
+
+                    }
+
+
+
+                    .frame(maxHeight: .infinity, alignment: .top)
+
+
+
+                .presentationDetents([.fraction(0.5)])
+
+
+
+                
+
+
+
+        }.navigationBarTitle("Map")
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+    private func markerTapped(_ marker: String) {
+
+
+
+        selectedMarker = marker
+
+
+
+        showSheet = true
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+#Preview {
+
+
+
+    ViewD()
+
+
+
+}
