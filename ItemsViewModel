@@ -1,0 +1,125 @@
+//  Created by DPI Student 043 on 7/14/24.
+
+//
+
+
+
+import SwiftUI
+
+import Combine
+
+
+
+class ItemsViewModel: ObservableObject {
+
+    @Published var items: [Item] = [
+
+        Item(id: 1, name: "Portage Park", description: """
+
+4100 N. Long Ave, Chicago IL
+
+
+
+Portage Park offers:
+
+- Play—six tennis courts
+
+- Soft-surface ADA accessible playground
+
+- In-line skating
+
+- Dog friends area
+
+- Bike path
+
+- 5 baseball fields
+
+
+
+Upcoming Events:
+
+- The Lizard y El Sol (Sat, Jul 27, 2024 from 9:30 AM - 10:30 AM)
+
+Enchanting retelling of a beloved Mexican folktale featuring interactive storytelling, colorful puppets, and Mexican-inspired music and dance! Presented by Goodman Theatre, The Lizard y El Sol is made specially for children ages 0 – 5 years and their adult friends and family.
+
+""", isFavorite: false),
+
+        
+
+        Item(id: 2, name: "Chopin (Frederic) Park", description: """
+
+3420 N. Long Ave. Chicago, IL
+
+
+
+Chopin Park offers:
+
+- A senior and two junior baseball fields
+
+- Softball field
+
+- A combination football/soccer field
+
+- 4 basketball standards
+
+- 4 tennis courts
+
+- 4 horseshoe courts
+
+- Sand volleyball court
+
+- Playground and spray pool
+
+
+
+Upcoming Events:
+
+No events
+
+""", isFavorite: false),
+
+        
+
+        Item(id: 3, name: "Dickinson (Arthur) Park", description: """
+
+4101 N. Lavergne Ave. Chicago, IL
+
+
+
+Dickinson Park offers:
+
+- Soft surface playground
+
+- Spray pool
+
+
+
+Upcoming Events:
+
+No events
+
+""", isFavorite: false)
+
+    ]
+
+
+
+    func toggleFavorite(item: Item) {
+
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+
+            items[index].isFavorite.toggle()
+
+        }
+
+    }
+
+
+
+    var favoriteItems: [Item] {
+
+        return items.filter { $0.isFavorite }
+
+    }
+
+}
