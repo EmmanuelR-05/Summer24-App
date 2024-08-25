@@ -1,0 +1,55 @@
+//  Created by DPI Student 043 on 7/14/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct ViewB: View {
+
+    @ObservedObject var viewModel: ItemsViewModel
+
+
+
+    var body: some View {
+
+        NavigationView {
+
+            List(viewModel.favoriteItems) { item in
+
+                NavigationLink(destination: ItemDetail(viewModel: viewModel, item: item)) {
+
+                    VStack(alignment: .leading) {
+
+                        Text(item.name)
+
+                            .font(.headline)
+
+                    }
+
+                }
+
+            }
+
+            .navigationTitle("Favorites")
+
+        }
+
+    }
+
+}
+
+
+
+struct ViewB_Previews: PreviewProvider {
+
+    static var previews: some View {
+
+        ViewB(viewModel: ItemsViewModel())
+
+    }
+
+}
