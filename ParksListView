@@ -1,0 +1,812 @@
+//
+
+//  Created by DPI Student 043 on 7/17/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct ParkData: Identifiable {
+
+
+
+
+
+
+
+    let id = UUID()
+
+
+
+
+
+    let title: String
+
+
+
+
+
+
+
+    let description: String
+
+
+
+
+
+
+
+    let uploadDate: String
+
+
+
+
+
+
+
+    let url: URL
+
+
+
+
+
+
+
+    var isFavorite: Bool = false
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct ParkList {
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    static var nearParks = [
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Portage Park",
+
+
+
+
+
+
+
+                 description: """
+
+Portage Park offers:
+
+- Play—six tennis courts
+
+- Soft-surface ADA accessible playground
+
+- In-line skating
+
+- Dog friends area
+
+- Bike path
+
+- 5 baseball fields
+
+
+
+Upcoming Events:
+
+- The Lizard y El Sol (Sat, Jul 27, 2024 from 9:30 AM - 10:30 AM)
+
+Enchanting retelling of a beloved Mexican folktale featuring interactive storytelling, colorful puppets, and Mexican-inspired music and dance! Presented by Goodman Theatre, The Lizard y El Sol is made specially for children ages 0 – 5 years and their adult friends and family. 
+
+""",
+
+
+
+
+
+
+
+
+
+              uploadDate: "4100 N. Long Ave, Chicago IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/portage-park")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Grant Park",
+
+
+
+
+
+
+
+              description: """
+
+Grant Park offers:
+
+- Baseball diamonds
+
+- Tennis courts
+
+- Breathtaking gardens
+
+
+
+The park plays host to some the city's largest food and music festivals, including The Taste of Chicago — a large food and music festival held around the Independence Day holiday — and The Grant Park Music Festival. Grant Park is also the site of the start and finish lines for the Chicago Marathon and Lollapalooza, a popular outdoor music festival.
+
+
+
+Upcoming Events:
+
+- Go Grind Friday Nights (Fri, Sep 06, 2024 from 4:00 PM - 7:00 PM)
+
+Weekly skateboarding races and trick competitions.
+
+
+
+""",
+
+
+
+              uploadDate: "331 E. Randolph St. (Columbus Drive) Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/grant-ulysses-park")!),
+
+
+
+
+
+
+
+  
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Welles Park",
+
+
+
+
+
+
+
+              description: """
+
+Welles Park offers:
+
+- Accessible/softsurface playground for community children
+
+- Baseball Field
+
+- Softball Field
+
+- Track and field
+
+- Football Field
+
+
+
+Preschoolers get involved in tot soccer, floor hockey, tumbling and various play groups, while older children can participate in tumbling, arts & crafts, swimming and many sports. Welles Park also provides activities for adults and children who are developmentally disabled through its therapeutic recreation programs.
+
+
+
+Upcoming Events:
+
+- Back to School Party (Thu, Aug 08, 2024 from 12:30 PM - 2:30 PM)
+
+Teens get ready to head back to school at Welles Park! We will have a DJ, E-Sports, and an Ice Cream Decorating Station.
+
+
+
+""",
+
+
+
+
+
+
+
+
+
+              uploadDate: "2333 W. Sunnyside Ave. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/welles-gideon-park")!),
+
+
+
+
+
+
+
+              
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Avondale Park",
+
+
+
+
+
+
+
+              description: """
+
+Avondale Park offers:
+
+- Outdoor swimming pool and spray pool
+
+- Playground with sandbox
+
+- Field house with four clubrooms, two kitchens, a gymnasium, and a gymnastics center
+
+
+
+
+
+Has a large selection of programming for patrons of all ages and skill levels. The park boasts an active roster of after-school programs for children ages 6-12. Choose from a list of available seasonal activities—fitness, floor hockey, arts & crafts, flag football, basketball, recreational tumbling, track & field, volleyball and baseball skills to name a few.
+
+
+
+Upcoming Events:
+
+No events
+
+""",
+
+
+
+
+
+
+
+
+
+
+
+              uploadDate: "3516 W. School St. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/avondale-park")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Barrett Park",
+
+
+
+
+
+
+
+              description: """
+
+Barrett Park offers:
+
+- Basketball court
+
+- Playground that was renovated in Fall 2013
+
+
+
+Upcoming Event:
+
+- No Strings Attached (Fri, Jul 19, 2024 from 6:00 PM - 7:00 PM)
+
+Rabbit Foot Puppetry presents 'No Strings Attached", an all ages spectacle marionette spree! A puppeteer's desktop jolts awake when the puppeteer goes to sleep, and these puppets have a life of their own. A cast of larger-than-life marionette mice battle for the spotlight. Witness magic mishaps, a pincushion fight of epic proportions, and a tiny acrobat who steals the show.
+
+""",
+
+
+
+
+
+
+
+              uploadDate: "2022 W. Cermak Rd. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/barrett-charles-park")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Buttercup Park",
+
+
+
+
+
+
+
+              description: """
+
+Buttercup Playlot Park offers:
+
+- Soft-surface playground
+
+- A mini splash pad for your kiddos to cool off and of course parents too
+
+- Baby swings, slides, climbing structures and more!
+
+
+
+Upcoming Events:
+
+- Movies at The Park (Sat, Sep 07, 2024 from 7:00 PM - 10:30 PM)
+
+Movie Playing: Teenage Mutant Ninja Turtles: Mutant Mayhem
+
+
+
+""",
+
+
+
+
+
+
+
+              uploadDate: "4901 N. Sheridan Rd. Chicago, IL ",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/buttercup-park")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Golden Gate Park",
+
+
+
+
+
+
+
+              description: """
+
+Golden Gate Park offers:
+
+- Baseball fields
+
+- Basketball fields
+
+- Water spray facilities
+
+
+
+Upcoming Events:
+
+No events
+
+""",
+
+
+
+
+
+
+
+
+
+
+
+              uploadDate: "13000 S. Eberhart Ave. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/golden-gate-park")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Gill Park",
+
+
+
+
+
+
+
+              description: """
+
+Gill Park offers:
+
+- T-ball field
+
+- Playground
+
+- Fieldhouse that contains a fitness center, indoor swimming pool, gymnasium, assembly hall (with portable stage), kitchen, and several clubrooms for rental.
+
+
+
+Outside, the park is equipped with a t-ball field and a playground. Gill Park is one of the sites for the popular Park Kids after school program for youth—with special programming available on school holidays. Teens can make new friends in Teen Club, as tots can do in Play Group. On the cultural side, the park offers arts & crafts, drawing, and painting.
+
+
+
+Upcoming Events:
+
+No events
+
+""",
+
+
+
+
+
+
+
+
+
+
+
+
+
+              uploadDate: "825 W. Sheridan Rd. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/gill-joseph-park")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Independence Park",
+
+
+
+
+
+
+
+              description: """
+
+Independence Park offers;
+
+- Playground
+
+- Tennis courts
+
+- Baseball diamonds
+
+- A water spray area
+
+- Field house with an indoor pool, a big party room, locker rooms, fitness center and a small gymnasium.
+
+
+
+Upcoming Events: 
+
+- Shakespeare Blood Oath (Sat, Aug 10, 2024 from 2:00 PM - 3:30 PM)
+
+Come see Shakespeare Blood Oath’s Twelfth Night for a version of the play with more clowns, more gags, and more queerness than you’ve ever seen before. Washed ashore after a shipwreck, Viola finds herself in unfamiliar territory, so she does what anyone would do … dresses up as a man to work for a duke and winds up in a love triangle she’d rather not be in.
+
+
+
+""",
+
+
+
+
+
+
+
+
+
+
+
+              uploadDate: "3945 N. Springfield Ave. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/events/shakespeare-blood-oath-twelfth-night-independence")!),
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        ParkData(
+
+
+
+
+
+
+
+              title: "Amundsen Park",
+
+
+
+
+
+
+
+              description: """
+
+Amundsen Park offers:
+
+- Baseball/softball fields
+
+- Football/soccer field
+
+- Volleyball court
+
+- Basketball court
+
+- Playground with a water spray feature
+
+- Fieldhouse is equipped with a gymnasium, fitness center, and club rooms.
+
+
+
+Upcoming Events:
+
+No events
+
+""",
+
+
+
+
+
+
+
+
+
+
+
+              uploadDate: "6200 W. Bloomingdale Ave. Chicago, IL",
+
+
+
+
+
+
+
+              url: URL(string: "https://www.chicagoparkdistrict.com/parks-facilities/amundsen-roald-park")!)
+
+
+
+
+
+
+
+    ]
+
