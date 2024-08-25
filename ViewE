@@ -1,0 +1,136 @@
+//
+
+//  Created by DPI Student 043 on 7/15/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct ViewE: View {
+
+    @State private var myPick = 0
+
+    @State private var editor: String = ""
+
+    @State private var buttonTapCount = 0
+
+    @State private var buttonTapMessage = ""
+
+    
+
+    var bigIdeas = [
+
+        "Select Park","Portage Park", "Welles Park", "Avondale Park", "Buttercup Park", "Gill Park"
+
+    ]
+
+    
+
+    var body: some View {
+
+        NavigationView {
+
+            VStack {
+
+               
+
+                Picker(selection: $myPick, label: Text("Select Park:")) {
+
+                    ForEach(0..<bigIdeas.count, id: \.self) {
+
+                        Text(self.bigIdeas[$0])
+
+                    }
+
+                }
+
+                .frame(maxWidth: .infinity)
+
+                .overlay(
+
+                RoundedRectangle(cornerRadius: 20)
+
+                    .stroke(.black, lineWidth: 5)
+
+                )
+
+                    Section(header: Text("Write Report:")) {
+
+                        TextEditor(text: $editor)
+
+                            .frame(height: 200)
+
+                            .padding(5)
+
+                            .background(
+
+                                RoundedRectangle(cornerRadius: 14)
+
+                                    .fill(Color.black)
+
+                            )
+
+                    }
+
+                    
+
+                    Section {
+
+                        Button(action: {
+
+                            // Action to perform when the button is tapped
+
+                            print("Report Submitted")
+
+                            editor = ""
+
+                        }) {
+
+                            Text("Submit")
+
+                                .frame(maxWidth: .infinity)
+
+                                .padding()
+
+                                .foregroundColor(.white)
+
+                                .background(Color.black)
+
+                                .cornerRadius(10)
+
+                        }.offset(y:-60)
+
+                    }
+
+                    .frame(height:200)
+
+                }
+
+                .navigationBarTitle("Reports")
+
+            }
+
+            .padding()
+
+        }
+
+    }
+
+
+
+
+
+struct ViewE_Previews: PreviewProvider {
+
+    static var previews: some View {
+
+        ViewE()
+
+    }
+
+}
+
