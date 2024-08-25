@@ -1,0 +1,179 @@
+//
+
+//  Created by DPI Student 043 on 7/17/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct ParkTableView: View {
+
+    var parks: [ParkData] = ParkList.nearParks
+
+
+
+
+
+    var body: some View {
+
+
+
+
+
+
+
+        NavigationView{
+
+            List(parks, id: \.id){ park in
+
+                NavigationLink(destination: ParkDetailView(park: park), label: {
+
+
+
+                    HStack{
+
+
+
+                        VStack(alignment: .leading, spacing: 5) {
+
+                            Text(park.title)
+
+                                .fontWeight(.semibold)
+
+                                .lineLimit(2)
+
+                                .minimumScaleFactor(0.5)
+
+
+
+
+
+                            Text(park.uploadDate)
+
+                                .font(.subheadline)
+
+                                .foregroundColor(.secondary)
+
+
+
+
+
+
+
+                        }//VStack
+
+
+
+
+
+
+
+                    }//HStack
+
+
+
+
+
+
+
+                })//End Cell
+
+
+
+
+
+
+
+            }//List
+
+
+
+
+
+
+
+            .navigationTitle("All Parks")
+
+
+
+
+
+
+
+        }//NavigationView
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Preview {
+
+
+
+
+
+
+
+    ParkTableView()
+
+
+
+
+
+
+
+}
