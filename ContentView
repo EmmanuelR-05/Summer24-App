@@ -1,0 +1,95 @@
+import SwiftUI
+
+
+
+struct ContentView: View {
+
+    @StateObject private var viewModel = ItemsViewModel()
+
+
+
+    var body: some View {
+
+        TabView {
+
+            ViewA(viewModel: viewModel)
+
+                .tabItem {
+
+                    Image(systemName: "tree")
+
+                    Text("Home")
+
+                }
+
+            
+
+            ViewB(viewModel: viewModel)
+
+                .tabItem {
+
+                    Image(systemName: "star")
+
+                    Text("Favorites")
+
+                }
+
+            EventsView()
+
+                .tabItem(){
+
+                    Image(systemName: "balloon")
+
+                    Text("Events")
+
+                }
+
+            ViewD()
+
+                .tabItem(){
+
+                    Image(systemName: "location")
+
+                    Text("Map")
+
+                }
+
+            ViewE()
+
+                .tabItem(){
+
+                    Image(systemName: "exclamationmark.triangle")
+
+                    Text("Reports")
+
+                }
+
+            ParkTableView()
+
+                .tabItem(){
+
+                    Image(systemName: "tree")
+
+                    Text("All Parks")
+
+                }
+
+            
+
+        }
+
+    }
+
+}
+
+
+
+struct ContentView_Previews: PreviewProvider {
+
+    static var previews: some View {
+
+        ContentView()
+
+    }
+
+}
