@@ -1,0 +1,117 @@
+//
+
+//  ItemDetail.swift
+
+//  bleh
+
+//
+
+//  Created by DPI Student 043 on 7/14/24.
+
+//
+
+
+
+import SwiftUI
+
+
+
+struct ItemDetail: View {
+
+    @ObservedObject var viewModel: ItemsViewModel
+
+    let item: Item
+
+    @State private var showDescription = false
+
+    
+
+    var body: some View {
+
+        ScrollView {
+
+            VStack {
+
+                HStack {
+
+                    Spacer()
+
+                    Button(action: {
+
+                        self.viewModel.toggleFavorite(item: self.item)
+
+                    }) {
+
+                        VStack {
+
+                            Image(systemName: item.isFavorite ? "star.fill" : "star")
+
+                                .foregroundColor(item.isFavorite ? .yellow : .gray)
+
+                                .font(.system(size: 40))
+
+                            
+
+                            Text("Press to add to favorites")
+
+                                .multilineTextAlignment(.center)
+
+                                .foregroundColor(.black)
+
+                                .padding(.top, 4)
+
+                        }
+
+                    }
+
+                    Spacer()
+
+                }
+
+                .padding()
+
+                
+
+                if showDescription {
+
+                    Text(item.description)
+
+                        .foregroundColor(.black)
+
+                        .padding()
+
+                }
+
+                
+
+                
+
+                Button(action: {
+
+                    self.showDescription.toggle()
+
+                }) {
+
+                    Image(systemName: showDescription ? "arrowshape.up.circle" : "arrowshape.down.circle")
+
+                        .foregroundColor(.black)
+
+                        .font(.system(size: 30))
+
+                }
+
+                .padding()
+
+                
+
+                Spacer()
+
+            }
+
+            .navigationBarTitle(item.name)
+
+        }
+
+    }
+
+}
